@@ -2,21 +2,31 @@ import Combine
 import Foundation
 import GameController
 
-struct InputHandlerID: Hashable, Equatable {
+public struct InputHandlerID: Hashable, Equatable {
     fileprivate let id = UUID()
+
+    public init() {
+
+    }
 }
 
-typealias InputEventHandler = (InputEvent) -> Void
-typealias ConnectionEventHandler = (Bool) -> Void
+public typealias InputEventHandler = (InputEvent) -> Void
+public typealias ConnectionEventHandler = (Bool) -> Void
 
-struct EventTypes: OptionSet {
-    let rawValue: Int8
+public struct EventTypes: OptionSet {
 
-    static let gamepad = EventTypes(rawValue: 1)
-    static let keyboard = EventTypes(rawValue: 1 << 1)
+    public let rawValue: Int8
+
+    public init(rawValue: Int8) {
+        self.rawValue = rawValue
+    }
+
+    public static let gamepad = EventTypes(rawValue: 1)
+    public static let keyboard = EventTypes(rawValue: 1 << 1)
+
 }
 
-final class InputStore: ObservableObject {
+public final class InputStore: ObservableObject {
 
     private struct HandlerEntry {
         let id: InputHandlerID
@@ -29,22 +39,22 @@ final class InputStore: ObservableObject {
     private var isActiveWindow = true
     private var handlerEntries: [HandlerEntry] = []
 
-    var p1KeyboardMap: KeyboardMap = .default
-    var p2KeyboardMap: KeyboardMap = .empty
+    public var p1KeyboardMap: KeyboardMap = .default
+    public var p2KeyboardMap: KeyboardMap = .empty
 
-    var buttonEventHandler: InputEventHandler?
-    var connectionEventHandler: ConnectionEventHandler?
+    public var buttonEventHandler: InputEventHandler?
+    public var connectionEventHandler: ConnectionEventHandler?
 
-    init() {
+    public init() {
         addControllers()
         addKeyboard()
     }
 
-    func addButtonHandler(id: InputHandlerID, eventTypes: EventTypes?, handler: @escaping InputEventHandler) {
+    public func addButtonHandler(id: InputHandlerID, eventTypes: EventTypes?, handler: @escaping InputEventHandler) {
         handlerEntries.append(.init(id: id, eventTypes: eventTypes, handler: handler))
     }
 
-    func removeButtonHandler(id: InputHandlerID) {
+    public func removeButtonHandler(id: InputHandlerID) {
         if let index = handlerEntries.lastIndex(where: { $0.id == id }) {
             handlerEntries.remove(at: index)
         }

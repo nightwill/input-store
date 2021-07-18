@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "input-store",
+    platforms: [.macOS(.v11)],
     products: [
         .library(name: "InputStore", targets: ["InputStore"]),
     ],

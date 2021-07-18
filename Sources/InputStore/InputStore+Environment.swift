@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct InputStoreKey: EnvironmentKey {
+public struct InputStoreKey: EnvironmentKey {
 
     public static let defaultValue: InputStore = .init()
 
@@ -8,7 +8,7 @@ struct InputStoreKey: EnvironmentKey {
 
 extension EnvironmentValues {
 
-    var inputStore: InputStore {
+    public var inputStore: InputStore {
         get { self[InputStoreKey.self] }
         set { self[InputStoreKey.self] = newValue }
     }

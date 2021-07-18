@@ -1,10 +1,10 @@
 import Foundation
 
-typealias KeyboardMap = [UInt16: InputButton]
+public typealias KeyboardMap = [UInt16: InputButton]
 
 extension KeyboardMap {
 
-    static var `default`: KeyboardMap {
+    public static var `default`: KeyboardMap {
         [
             0: .left,
             2: .right,
@@ -23,7 +23,7 @@ extension KeyboardMap {
         ]
     }
 
-    static var empty: KeyboardMap {
+    public static var empty: KeyboardMap {
         [:]
     }
     

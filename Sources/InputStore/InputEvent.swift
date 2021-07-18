@@ -1,10 +1,10 @@
 import Foundation
 
-struct InputEvent {
-    let player: Int
-    let button: InputButton
-    let pressed: Bool
-    let value: Double?
+public struct InputEvent {
+    public let player: Int
+    public let button: InputButton
+    public let pressed: Bool
+    public let value: Double?
 
     init(player: Int, button: InputButton, pressed: Bool) {
         self.player = player
